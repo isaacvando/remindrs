@@ -1,16 +1,28 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    // borderColor: '#fff',
+    // borderWidth: 1
   },
   block: {
     flexDirection: 'row',
-    marginLeft: 12,
-    //alignItems: 'center'
   },
   scrollView: {
+  },
+  separator: {
+    backgroundColor: '#999',
+    width: '95%',
+    padding: StyleSheet.hairlineWidth,
+    margin: 10
+  },
+  headerText: {
+    color: '#fff',
+    fontSize: 50,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   bodyText: {
     color: '#fff',
@@ -21,29 +33,29 @@ export default styles = StyleSheet.create({
     marginRight: 13,
     flexShrink: 1
   },
-  headerText: {
-    color: '#fff',
-    fontSize: 50,
-    paddingTop: 25,
-    paddingBottom: 10,
+  reminderTextWrapper: {
+    flexShrink: 1,
+    //width: '58%'
   },
   date: {
     color: '#fff',
     fontSize: 15,
     marginTop: 15,
     marginBottom: 15,
-    marginLeft: 8,
+    marginLeft: 12,
     marginRight: 6,
     padding: 4,
     borderColor: '#999',
     borderWidth: 1,
     borderRadius: 10,
   },
-  separator: {
-    backgroundColor: '#999',
-    width: '95%',
-    padding: StyleSheet.hairlineWidth,
-    margin: 10
+  dateTimeWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  reminderWrapper: {
+    flexDirection: 'row',
+    width: Dimensions.get('window').width - 52
   },
   newButtonView: {
     flex: 1,
@@ -70,10 +82,13 @@ export default styles = StyleSheet.create({
     width: 62,
     height: 62
   },
+  checkButtonWrapper: {
+    flexDirection: 'row',
+    marginLeft: 'auto'
+  },
   checkButtonOpacity: {
     flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: 'flex-end',
     marginLeft: 22,
     marginRight: 22
   },
@@ -81,44 +96,33 @@ export default styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
-  textInput: {
-    color: '#fff',
-    fontSize: 20,
-    width: 305,
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
   textInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: 310, // this should be the width of the DatePicker
+    marginLeft: 16,
+    // width: 310, // this should be the width of the DatePicker
     height: 216 // and this the height
   },
-  datePickerWrapper: {
-    //height: 200
+  textInput: {
+    color: '#fff',
+    fontSize: 20,
+    width: Dimensions.get('window').width - 100,
+    paddingTop: 30,
+    paddingBottom: 30,
+  },
+  deleteButtonWrapper: {
+    flexDirection: 'row',
+    marginLeft: 'auto',
+    marginRight: 6
   },
   deleteButtonOpacity: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 22,
-    paddingRight: 22
+    paddingRight: 22,
   },
   deleteButtonImage: {
     width: 20,
     height: 20,
-    marginLeft: 10
-  },
-  checkReminderButtonImage: {
-    width: 27,
-    height: 27,
-    marginLeft: 9
-  },
-  reminderWrapper: {
-    flexDirection: 'row',
-    width: 310
-  },
-  dateTimeWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center'
   }
 });

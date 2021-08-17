@@ -10,13 +10,15 @@ const MyTextInput = (props) => {
           <TextInput style={styles.textInput} value={props.text} onChangeText={props.setText}
             multiline={true} placeholder={'reminder body here'} placeholderTextColor={'#999'}></TextInput>
         </View>
-        <TouchableOpacity style={styles.checkButtonOpacity}
-          onPress={() => {
-            props.setShowTextInput(false);
-            props.setShowDatePicker(true);
-          }}>
-          <Image source={require('../assets/check.png')} style={styles.checkButtonImage}></Image>
-        </TouchableOpacity>
+        <View style={styles.checkButtonWrapper}>
+          <TouchableOpacity style={styles.checkButtonOpacity}
+            onPress={() => {
+              props.setShowTextInput(false);
+              props.setShowDatePicker(true);
+            }}>
+            <Image source={require('../assets/check.png')} style={styles.checkButtonImage}></Image>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.separator} />
     </>

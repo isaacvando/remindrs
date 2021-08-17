@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SafeAreaView, Text, View, Platform, Alert, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { SafeAreaView, Text, View, Platform, Alert, ScrollView, TouchableOpacity, Image, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
@@ -19,6 +19,7 @@ Notifications.setNotificationHandler({
 
 /*
 Tasks:
+- make formatting relative
 ---V2---
 - ability to edit time and text
 - animations
@@ -53,63 +54,66 @@ const App = () => {
   }, [setReminders]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollView} keyboardShouldPersistTaps={'handled'}>
-        {/* Header */}
-        <View style={{ alignItems: 'center' }}>
-          <Text style={styles.headerText}>remindrs</Text>
-        </View>
-        <View style={styles.separator} />
+    <>
+      <StatusBar barStyle={'light-content'}></StatusBar>
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollView} keyboardShouldPersistTaps={'handled'}>
+          {/* Header */}
+          <View style={{ alignItems: 'center' }}>
+            <Text style={styles.headerText}>remindrs</Text>
+          </View>
+          <View style={styles.separator} />
 
-        {/* Body */}
-        {showTextInput &&
-          <MyTextInput text={text} setText={setText}
-            setShowTextInput={setShowTextInput} setShowDatePicker={setShowDatePicker}></MyTextInput>}
-        {showDatePicker &&
-          <MyDatePicker date={date} setDate={setDate} text={text} setText={setText} setReminders={setReminders}
-            setShowDatePicker={setShowDatePicker} createReminder={createReminder}></MyDatePicker>}
-        {(showTextInput || showDatePicker) &&
-          null}
+          {/* Body */}
+          {showTextInput &&
+            <MyTextInput text={text} setText={setText}
+              setShowTextInput={setShowTextInput} setShowDatePicker={setShowDatePicker}></MyTextInput>}
+          {showDatePicker &&
+            <MyDatePicker date={date} setDate={setDate} text={text} setText={setText} setReminders={setReminders}
+              setShowDatePicker={setShowDatePicker} createReminder={createReminder}></MyDatePicker>}
+          {(showTextInput || showDatePicker) &&
+            null}
 
-        {/* {notification && console.log(notification)} */}
-        {reminders}
+          {/* {notification && console.log(notification)} */}
+          {reminders}
 
-        <View style={{ padding: 40 }}></View>
+          <View style={{ padding: 40 }}></View>
 
-      </ScrollView>
+        </ScrollView>
 
-      {/* Bottom button - should probably be put into a component */}
-      {(showTextInput || showDatePicker) ?
-        <>
-          <View style={styles.newButtonBackground}></View>
-          <TouchableOpacity style={styles.newButtonOpacity}
-            onPress={() => {
-              setText('');
-              d = new Date();
-              d.setHours(d.getHours() + 1);
-              setDate(new Date(d));
-              setShowTextInput(false);
-              setShowDatePicker(false);
-            }}>
-            <Image source={require('./assets/cancel.png')} style={styles.newButtonImage}></Image>
-          </TouchableOpacity>
-        </> :
-        <>
-          <View style={styles.newButtonBackground}></View>
-          <TouchableOpacity style={styles.newButtonOpacity}
-            onPress={() => {
-              setText('');
-              d = new Date();
-              d.setHours(d.getHours() + 1);
-              setDate(new Date(d));
-              setShowTextInput(true);
-            }}>
-            <Image source={require('./assets/plus.png')} style={styles.newButtonImage}></Image>
-          </TouchableOpacity>
-        </>
-      }
+        {/* Bottom button - should probably be put into a component */}
+        {(showTextInput || showDatePicker) ?
+          <>
+            <View style={styles.newButtonBackground}></View>
+            <TouchableOpacity style={styles.newButtonOpacity}
+              onPress={() => {
+                setText('');
+                d = new Date();
+                d.setHours(d.getHours() + 1);
+                setDate(new Date(d));
+                setShowTextInput(false);
+                setShowDatePicker(false);
+              }}>
+              <Image source={require('./assets/cancel.png')} style={styles.newButtonImage}></Image>
+            </TouchableOpacity>
+          </> :
+          <>
+            <View style={styles.newButtonBackground}></View>
+            <TouchableOpacity style={styles.newButtonOpacity}
+              onPress={() => {
+                setText('');
+                d = new Date();
+                d.setHours(d.getHours() + 1);
+                setDate(new Date(d));
+                setShowTextInput(true);
+              }}>
+              <Image source={require('./assets/plus.png')} style={styles.newButtonImage}></Image>
+            </TouchableOpacity>
+          </>
+        }
 
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 }
 
