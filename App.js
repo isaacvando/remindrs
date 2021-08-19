@@ -88,9 +88,10 @@ const App = () => {
             <TouchableOpacity style={styles.newButtonOpacity}
               onPress={() => {
                 setText('');
-                d = new Date();
-                d.setHours(d.getHours() + 1);
-                setDate(new Date(d));
+                // d = new Date();
+                // d = d.setHours(d.getHours() + 1);
+                // setDate(new Date(d));
+                setDate(new Date());
                 setShowTextInput(false);
                 setShowDatePicker(false);
               }}>
@@ -102,9 +103,10 @@ const App = () => {
             <TouchableOpacity style={styles.newButtonOpacity}
               onPress={() => {
                 setText('');
-                d = new Date();
-                d.setHours(d.getHours() + 1);
-                setDate(new Date(d));
+                // d = new Date();
+                // d = d.setHours(d.getHours() + 1);
+                // setDate(new Date(d));
+                setDate(new Date());
                 setShowTextInput(true);
               }}>
               <Image source={require('./assets/plus.png')} style={styles.newButtonImage}></Image>
@@ -208,7 +210,7 @@ const scheduleNotification = async (text, date, id, setReminders) => {
     return await Notifications.scheduleNotificationAsync({
       content: {
         body: text,
-        sound: ''
+        sound: true
       },
       trigger: new Date(date),
     });

@@ -7,7 +7,7 @@ const DateTime = (props) => {
   hours = props.date.getHours();
   minutes = props.date.getMinutes();
   minutesString = '' + minutes;
-  if (hours > 12) {
+  if (hours >= 12) {
     hours = hours % 12;
     ampm = 'PM';
   }
