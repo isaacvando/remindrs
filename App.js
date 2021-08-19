@@ -88,10 +88,7 @@ const App = () => {
             <TouchableOpacity style={styles.newButtonOpacity}
               onPress={() => {
                 setText('');
-                // d = new Date();
-                // d = d.setHours(d.getHours() + 1);
-                // setDate(new Date(d));
-                setDate(new Date());
+                setDate(new Date().addHours(1));
                 setShowTextInput(false);
                 setShowDatePicker(false);
               }}>
@@ -103,10 +100,7 @@ const App = () => {
             <TouchableOpacity style={styles.newButtonOpacity}
               onPress={() => {
                 setText('');
-                // d = new Date();
-                // d = d.setHours(d.getHours() + 1);
-                // setDate(new Date(d));
-                setDate(new Date());
+                setDate(new Date().addHours(1));
                 setShowTextInput(true);
               }}>
               <Image source={require('./assets/plus.png')} style={styles.newButtonImage}></Image>
@@ -270,6 +264,11 @@ const getItem = async (key) => {
   catch (e) {
     Alert.alert(e);
   }
+}
+
+Date.prototype.addHours = function (h) {
+  this.setTime(this.getTime() + (h * 60 * 60 * 1000));
+  return this;
 }
 
 export default App;
