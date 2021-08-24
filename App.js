@@ -35,7 +35,6 @@ const App = () => {
   const [reminders, setReminders] = useState([]);
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState();
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const notificationListener = useRef();
 
   useEffect(() => {
@@ -47,20 +46,6 @@ const App = () => {
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener);
-    };
-  }, []);
-
-  useEffect(() => {
-    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-      setIsKeyboardVisible(true);
-    });
-    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-      setIsKeyboardVisible(false);
-    });
-
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
     };
   }, []);
 
