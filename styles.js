@@ -53,6 +53,9 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  datePickerWrapper: {
+    paddingLeft: 12,
+  },
   reminderWrapper: {
     flexDirection: 'row',
     width: Dimensions.get('window').width - 52

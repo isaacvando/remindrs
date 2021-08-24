@@ -1,5 +1,5 @@
 # remindrs
-remindrs is a simple reminders app. \
+remindrs is a simple reminders app. 
 
 Technologies: 
 - React Native

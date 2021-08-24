@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SafeAreaView, Text, View, Platform, Alert, ScrollView, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { SafeAreaView, Text, View, Platform, Alert, ScrollView, TouchableOpacity, Image, StatusBar, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
@@ -21,6 +21,8 @@ Notifications.setNotificationHandler({
 Tasks:
 - make formatting relative
 ---V2---
+- minimum selectable date
+- "Fired:" tag based on date, not notification listener. remove listener?
 - ability to edit time and text
 - animations
 */
@@ -33,6 +35,7 @@ const App = () => {
   const [reminders, setReminders] = useState([]);
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState();
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const notificationListener = useRef();
 
   useEffect(() => {
@@ -48,10 +51,26 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setIsKeyboardVisible(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setIsKeyboardVisible(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
+  useEffect(() => {
     (async () => {
       await getReminders(setReminders);
     })();
   }, [setReminders]);
+
+
 
   return (
     <>
