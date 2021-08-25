@@ -59,7 +59,7 @@ const App = () => {
 
   return (
     <>
-      <StatusBar barStyle={'light-content'}></StatusBar>
+      <StatusBar barStyle={'light-content'} backgroundColor={'#000'}></StatusBar>
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView} keyboardShouldPersistTaps={'handled'}>
           {/* Header */}
