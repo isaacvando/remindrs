@@ -9,7 +9,7 @@ const MyDatePicker = (props) => {
       <View style={styles.block}>
         <View style={styles.datePickerWrapper} >
           <DatePicker textColor={'#ffffff'} date={props.date} onDateChange={props.setDate}
-            minuteInterval={1} fadeToColor="none" />
+            minuteInterval={5} fadeToColor="none" />
         </View>
         <View style={styles.checkButtonWrapper}>
           <TouchableOpacity style={styles.checkButtonOpacity}
